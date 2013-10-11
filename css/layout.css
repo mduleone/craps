@@ -111,10 +111,12 @@
     top: 5%;
     left: 5%;
     opacity: 1;/*
-    -moz-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s, -moz-transform .5s;
-    -webkit-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s, -webkit-transform .5s;
-    -o-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s, -o-transform .5s;
-    transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s, transform .5s;*/
+    -moz-transition: width 1s, height 1s, top 1s, left 1s, -moz-transform 1s;
+    -webkit-transition: width 1s, height 1s, top 1s, left 1s, -webkit-transform 1s;
+    -o-transition: width 1s, height 1s, top 1s, left 1s, -o-transform 1s;
+    transition: width 1s, height 1s, top 1s, left 1s, transform 1s;*/
+    -webkit-transition-property: width, height, top, left;
+    -webkit-transition-duration: 1s;
     transition-property: width, height, top, left;
     transition-duration: 1s;
   }
@@ -124,6 +126,8 @@
     width: 40%;
     top: 10%;
     left: 30%;
+    -webkit-transition-property: width, height, top, left;
+    -webkit-transition-duration: 1s;
     transition-property: width, height, top, left;
     transition-duration: 1s;
   }
@@ -134,8 +138,55 @@
     width: 43%;
     top: 25%;
     left: 10%;
+    -webkit-transition-property: width, height, top, left;
+    -webkit-transition-duration: 1s;
     transition-property: width, height, top, left;
     transition-duration: 1s;
+  }
+  /* MODAL_FADE_INTERVAL = 0.5 */
+  /* BET_FORM_FADE_OUT = 0.5 */
+  .show.hide,
+  .hide.show,
+  .show{
+    right: 0%;
+    left: auto;
+    opacity: 1;
+    display: block;
+    /**/
+    transition-property: right, opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-property: right, opacity;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-timing-function: ease-in-out;
+    /**/
+  }
+  .hide{
+    left: 100%;
+    opacity: 0;
+    display: none;
+    /**/
+    transition-property: right, opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-property: right, opacity;
+    -webkit-transition-duration: 1s;
+    -webkit-transition-timing-function: ease-in-out;
+    /**/
+  }
+  .open{
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    -webkit-transition-property: opacity;
+    -webkit-transition-duration: 0.5s;
+  }
+  .close{
+    opacity: 0;
+    transition-property:  opacity;
+    transition-duration: 0.5s;
+    -webkit-transition-property: opacity;
+    -webkit-transition-duration: 0.5s;
   }
 /* Modal CSS Properties */
   .modalBG{
@@ -162,8 +213,12 @@
     top: 2%;
     left: 2%;
     right: 2%;
+    /*
     bottom: calc(2% + 35px);
     bottom: -webkit-calc(2% + 35px);
+    */
+    margin-bottom: 35px;
+    bottom: 2%;
   }
   .modalScreen{
     z-index: 1;
@@ -181,24 +236,23 @@
     display: none;
     background-color: #000;
     opacity: 0.5;
+    transform: translate3d(0, 0, 0);
   }
   #drawer{
     position: absolute;
     z-index: 2;
     color: #FFF;
     top: 15%;
-    left: 100%;
-    height: 70%;
-    display: none;
-    opacity: 0;
+    height: 70%
   }
   #drawerButtons{
-    position: absolute;
+    position: absoluste;
     top: 2%;
     left: 2%;
     bottom: 35px;
     padding: 0;
     margin: 0;
+    width: 750px;
   }
   #drawerWindow{
     position: absolute;
@@ -386,7 +440,6 @@
   #betListBG{
     z-index: 2;
     position: absolute;
-    left: 100%;
     height: 90%;
     width: 25%;
   }
@@ -408,8 +461,20 @@
     left: 15%;
     top: 35%;
     display: none;
-    height: auto;
+    height: 140px;
     width: 70%;
+  }
+  #singleBetListWindow{
+    top: 5%;
+    left: 1%;
+    right: 1%;
+    margin-bottom: 35px;
+    bottom: 5%;
+  }
+  #closeSingle{
+    position: absolute;
+    left: 1%;
+    bottom: 5%;
   }
   #closeBets{
     position: absolute;
@@ -429,7 +494,6 @@
     padding: 1%;
   }
   #betResultsWindow{
-    position: relative;
     background: #222;
     color: #FFF;
     overflow: hidden;
@@ -477,6 +541,11 @@
     margin: 4px;
     overflow: auto;
     overflow-x: hidden;
+  }
+  #closeBetResults{
+    position: absolute;
+    left: 2%;
+    bottom: 2%;
   }
   #betListing{
     position: relative;

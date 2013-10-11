@@ -80,7 +80,7 @@
         </p>
       </fieldset>
     </div>
-    <div id='betListBG' class='smallRound modalBG'>
+    <div id='betListBG' class='smallRound modalBG hide'>
       <div id='betListWindow' class='modalWindow'>
         <div id='playerArea'>
           <div id='bank'>
@@ -114,7 +114,7 @@
       </div>
       <div id='closeTutorial' class='bttn red' onclick='closeTutorial()'>Close Tutorial</div>
     </div>
-    <div id='drawer' class='smallRound modalBG'>
+    <div id='drawer' class='smallRound modalBG hide'>
       <div id='drawerButtons'>
         <div id='gameplayButton' class='tab active' onclick='clickModalButton("gameplay")'>Game Play</div>
         <div id='rulesButton' class='tab' onclick='clickModalButton("rules")'>Bet Types</div>
@@ -154,10 +154,10 @@
           <label for='settingsName'>Your Name: </label>
           <input id='settingsName' type='text' size="10" placeholder="Set your name!"><br /><br />
           <center>Timing Settings (ms)<br />To turn animation off and remove the delay, try 0</center><br />
-          <label for='modalTiming'>Modal Fade Out: </label>
+          <!-- label for='modalTiming'>Modal Fade Out: </label>
           <input id='modalTiming' type='number' placeholder="0" size="10"><br /><br />
           <label for='betFormTiming'>Bet Form Slide: </label>
-          <input id='betFormTiming' type='number' placeholder="0" size="10"><br /><br />
+          <input id='betFormTiming' type='number' placeholder="0" size="10"><br /><br / -->
           <label for='diceTiming'>Dice Roll: </label>
           <input id='diceTiming' type='number' placeholder="1000" size="10"><br /><br />
           <center>
@@ -348,7 +348,7 @@
     </div>
     <div id='glossaryScreen' onclick="closeGlossary()" class='modalScreen'></div>
     <div id='betResultsBG' class='smallRound' class='modalBG'>
-      <div id='betResultsWindow'>
+      <div id='betResultsWindow' class='modalWindow'>
         <div id='lastRoll'>
         Your last roll was <span id='die1'></span> <span id='die2'></span>
         </div>

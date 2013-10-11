@@ -2,13 +2,26 @@
  modal.js
 */
 
+$('#drawer').on('transitionend webkitTransitionEnd', function(){
+    if($('#drawer').css('opacity') == "0"){
+      $('#drawer').hide();
+    }
+  });
+$('#betListBG').on('transitionend webkitTransitionEnd', function(){
+    if($('#betListBG').css('opacity') == "0"){
+      $('#betListBG').hide();
+    }
+  });
+
 function openModal(){
   if(!GameState.tutorial){
     $('#modalScreen').show();
   }
   var _drawer = $('#drawer');
   _drawer.show();
-  _drawer.animate({left: ($('#board').width()*(0.98) - _drawer.width()), opacity: 1}, MODAL_FADE_INTERVAL);
+  //_drawer.animate({left: ($('#board').width()*(0.98) - _drawer.width()), opacity: 1}, MODAL_FADE_INTERVAL);
+  _drawer.addClass('show');
+  _drawer.removeClass('hide');
   //resizeDrawer();
   if($('#colorScheme').val() == 5){
     $('#customColors').show();
@@ -16,7 +29,6 @@ function openModal(){
   } else {
     $('#customColors').hide();
   }
-  $('#openButtons').hide();
   PlayerManager.updatePlayerArea();
   _CRAPS.dealer.betManager.displayBets();
   //_CRAPS.dealer.betManager.displayBets();
@@ -44,8 +56,10 @@ function closeModal(){
   $('#colorScheme').val(localStorage['colors']);
   colors = eval("colors" + localStorage['colors']);
   //$('#drawer').animate({opacity: 0}, MODAL_FADE_INTERVAL, function(){$('#modalScreen').hide();$('#drawer').hide();});
-  $('#drawer').animate({left: ($('#board').offset().left + $('#board').width() + 2), opacity: 0}, MODAL_FADE_INTERVAL, function(){$('#drawer').hide();});
-  $('#openButtons').show();
+  //$('#drawer').animate({left: ($('#board').offset().left + $('#board').width() + 2), opacity: 0}, MODAL_FADE_INTERVAL, function(){$('#drawer').hide();});
+  $('#drawer').addClass('hide');
+  $('#drawer').removeClass('show');
+  //$('#drawer').hide();
   PlayerManager.updatePlayerArea();
   _CRAPS.dealer.betManager.displayBets();
   closeBets();
@@ -55,34 +69,47 @@ function closeModal(){
 
 function closeBets(){
   var betList = $('#betListBG');
-  betList.animate({left: '100%', opacity: 0}, MODAL_FADE_INTERVAL), function(){$('#betListBG').hide();};
+  //betList.animate({left: '100%', opacity: 0}, MODAL_FADE_INTERVAL), function(){$('#betListBG').hide();};
+  betList.addClass('hide');
+  betList.removeClass('show');
+  //betList.hide();
   $('#modalScreen').hide();
 }
 
 function closeSingle(){
   var betList = $('#singleBetListBG');
-  betList.animate({opacity: 0}, MODAL_FADE_INTERVAL, function(){$('#singleBetListBG').hide();});
+  //betList.animate({opacity: 0}, MODAL_FADE_INTERVAL, function(){$('#singleBetListBG').hide();});
+  betList.addClass('close');
+  betList.removeClass('open');
+  betList.hide();
   $('#modalScreen').hide();
 }
 
 function openBets(){
   var betList = $('#betListBG');
   betList.show();
-  betList.animate({left: ($('#board').width()*(0.98) - betList.width()), opacity: 1}, MODAL_FADE_INTERVAL);
+  betList.addClass('show');
+  betList.removeClass('hide');
+  //betList.animate({left: ($('#board').width()*(0.98) - betList.width()), opacity: 1}, MODAL_FADE_INTERVAL);
   $('#modalScreen').show();
   _CRAPS.dealer.betManager.displayBets();
   PlayerManager.updatePlayerArea();
 }
 
 function closeBetResults(){
-  $('#betResultsBG').animate({opacity: 0}, MODAL_FADE_INTERVAL, function(){$('#betResultsBG').hide();});
+  //$('#betResultsBG').animate({opacity: 0}, MODAL_FADE_INTERVAL, function(){$('#betResultsBG').hide();});
+  $('#betResultsBG').addClass('close');
+  $('#betResultsBG').removeClass('open');
+  $('#betResultsBG').hide();
   $('#modalScreen').hide();
 }
 
 function openBetResults(){
   $('#modalScreen').show();
   $('#betResultsBG').show();
-  $('#betResultsBG').animate({opacity: 1}, MODAL_FADE_INTERVAL);
+  //$('#betResultsBG').animate({opacity: 1}, MODAL_FADE_INTERVAL);
+  $('#betResultsBG').addClass('open');
+  $('#betResultsBG').removeClass('close');
 }
 
 function openGlossary(term){
@@ -172,7 +199,8 @@ function resizeDrawer(){
             $('#settingsButton').width() + 
             $('#tutorialButton').width() + 
             $('#aboutButton').width() + 
-            115);/*
+            115);
+  /*
   $('#drawerWindow').height(_drawer.height() - _drawer.height()*(0.005) - $('#board').height()*(0.02) - 35);
   var rules = $('#rules');
   var rulesHidden = (rules.css('visibility')== 'hidden' || rules.css('display') == 'none')
@@ -223,13 +251,14 @@ function resizeDrawer(){
   }
   if(rulesHidden){
     rules.hide();
-  }*/
+  }
   if(hidden){
     _drawer.hide();
   }
   if(!hidden){
     _drawer.css({left: ($('#board').width()*(0.98) - _drawer.width())});
   }
+  */
 }
 
 function updateColors(){
